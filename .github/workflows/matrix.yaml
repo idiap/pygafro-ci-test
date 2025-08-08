@@ -35,4 +35,4 @@ jobs:
       - name: Build wheels
         run: echo "${CIBW_BUILD}"
         env:
-          CIBW_BUILD: steps.configuration.outputs.build_variant
+          CIBW_BUILD: ${{ steps.configuration.outputs.build_variant }}
