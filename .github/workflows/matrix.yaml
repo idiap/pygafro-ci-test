@@ -45,8 +45,12 @@ jobs:
           fi
           echo "before_build=$BEFORE_BUILD" >> $GITHUB_OUTPUT
 
+          # The package version
+          VERSION=(grep '^version *= *' pyproject.toml | sed -E 's/version *= *"(.*)"/\1/')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
       - name: Build wheels
-        run: echo "${CIBW_BUILD} ${CIBW_ENVIRONMENT}"
+        run: echo "${{ steps.configuration.outputs.version }}"
         env:
           CIBW_BUILD: ${{ steps.configuration.outputs.build_variant }}
           CIBW_ENVIRONMENT: 'CXX="clang++" CC="clang"'
