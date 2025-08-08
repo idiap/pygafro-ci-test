@@ -46,7 +46,7 @@ jobs:
           echo "before_build=$BEFORE_BUILD" >> $GITHUB_OUTPUT
 
           # The package version
-          VERSION=(grep '^version *= *' pyproject.toml | sed -E 's/version *= *"(.*)"/\1/')
+          VERSION=$(grep '^version *= *' pyproject.toml | sed -E 's/version *= *"(.*)"/\1/')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Build wheels
