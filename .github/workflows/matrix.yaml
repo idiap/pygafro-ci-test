@@ -23,6 +23,7 @@ jobs:
           - os: ubuntu-24.04-arm
             variant: musllinux
           - os: macos-15
+            variant:
     
     steps:
       - uses: actions/checkout@v4
