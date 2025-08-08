@@ -25,7 +25,7 @@ jobs:
       - name: Configuration
         id: configuration
         run: |
-          if [ -n "${{ matrix.variant }}" ]; then
+          if [ "${{ matrix.os }}" != "macos-15" ]; then
             BUILD_VARIANT="cp${{ matrix.python }}-${{ matrix.variant }}_*"
           else
             BUILD_VARIANT="cp${{ matrix.python }}-*"
