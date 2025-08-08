@@ -22,7 +22,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Configuration
+        id: configuration
+        run: |
+          if [ -n "${{ matrix.variant }}" ]; then
+            BUILD_VARIANT="cp${{ matrix.python }}-${{ matrix.variant }}_*"
+          else
+            BUILD_VARIANT="cp${{ matrix.python }}-*"
+          fi
+          echo "build_variant=$BUILD_VARIANT" >> $GITHUB_OUTPUT
+
       - name: Build wheels
-        run: echo "${CIBW_BUILD} ${{ matrix.os }} / py${{ matrix.python }} / ${{ matrix.variant }}"
+        run: echo "${CIBW_BUILD}"
         env:
-          CIBW_BUILD: cp${{ matrix.python }}-*
+          CIBW_BUILD: steps.configuration.outputs.build_variant
