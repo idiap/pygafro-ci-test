@@ -14,16 +14,16 @@ jobs:
       matrix:
         python: [38, 39]
         include:
-          - os: ubuntu-24.04
-            variant: manylinux
-          - os: ubuntu-24.04
-            variant: musllinux
-          - os: ubuntu-24.04-arm
-            variant: manylinux
-          - os: ubuntu-24.04-arm
-            variant: musllinux
           - os: macos-15
-            variant:
+            variant: ""
+          - os: ubuntu-24.04
+            variant: manylinux
+          - os: ubuntu-24.04
+            variant: musllinux
+          - os: ubuntu-24.04-arm
+            variant: manylinux
+          - os: ubuntu-24.04-arm
+            variant: musllinux
     
     steps:
       - uses: actions/checkout@v4
