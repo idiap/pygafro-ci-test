@@ -1,0 +1,30 @@
+name: Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, ubuntu-24.04-arm]
+        python: [38, 39]
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build wheels
+        if: matrix.os != 'ubuntu-24.04-arm'
+        run: echo "${CIBW_BUILD}"
+        env:
+          CIBW_BUILD: cp${{ matrix.python }}-*
+
+      - name: Build wheels
+        if: matrix.os == 'ubuntu-24.04-arm'
+        run: echo "${CIBW_BUILD} ${CIBW_SPECIAL}"
+        env:
+          CIBW_BUILD: cp${{ matrix.python }}-*
+          CIBW_SPECIAL: YES
