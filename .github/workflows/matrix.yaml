@@ -60,7 +60,7 @@ jobs:
           if [ "${{ matrix.os }}" != "macos-15" ]; then
             EXPECTED_VARIANT="${{ matrix.variant }}"
           else
-            EXPECTED_VARIANT="macos"
+            EXPECTED_VARIANT="macosx"
           fi
 
           if [ "${{ matrix.os }}" == "macos-15" ]; then
