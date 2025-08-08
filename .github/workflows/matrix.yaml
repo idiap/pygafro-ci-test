@@ -78,7 +78,7 @@ jobs:
           echo "Looking for '$DESCRIPTION' on PyPI..."
           FOUND=$(curl -s https://pypi.org/pypi/$PACKAGE_NAME/json | \
             jq -r --arg v "$VERSION" '.releases[$v][]? | select(.packagetype=="bdist_wheel") | .filename' | \
-            grep "-$EXPECTED_PYTHON_VERSION-" | grep "-$EXPECTED_VARIANT_" | grep "_$EXPECTED_ARCH" || true)
+            grep "\-$EXPECTED_PYTHON_VERSION\-" | grep "\-$EXPECTED_VARIANT_" | grep "_$EXPECTED_ARCH" || true)
 
           if [ -n "$FOUND" ]; then
             echo "Exact wheel '$FOUND' already exists on PyPI. Skipping build & publish."
